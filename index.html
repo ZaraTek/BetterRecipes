@@ -7,10 +7,15 @@
     <link rel="icon" type="image/x-icon" href="recipe_icon.png">
     <script defer src="script.js"></script>
     <style>
+        * {
+            color: white;
+        }
+            
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
         }
         input {
             width: 300px;
@@ -26,21 +31,77 @@
             width: 80%;
             max-width: 800px;
         }
+        .screen {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(30, 30, 34);
+
+        }
+        .l {
+            background: red;
+        }
+        .header {
+            height: 60px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(10, 8, 28);
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .nav-row {
+            height: 50px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+        }
+        .text-button {
+            background: none;
+            border: none;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .text-button:hover {
+            font-weight: 700;
+        }
     </style>
 </head>
 <body>
-    <h1>Better Recipes</h1>
-    <input type="text" id="videoId" placeholder="Enter YouTube Video ID">
-    <button onclick="fetchVideo()">Download</button>
+    <div class="screen">
+        <div class="header">
+            <div class="title">BetterRecipes</div>
+            <div class="nav-row">
+                <button style="width: 50px" class="text-button">Feed</button>
+                <button style="width: 60px" class="text-button">Search</button>
+                <button style="width: 70px" class="l text-button">Library</button>
+            </div>
+        </div>
+        <div class="content">
+            Bye
+        </div>
+    </div>
+
+
+
+    <!-- <h1>Better Recipes</h1>
     
     <h2 id="videoTitle"></h2>
     <video id="videoPlayer" controls></video>
-
-    <button onclick="fetchCaptions()">Get Captions</button>
 
     <div id="captions">Captions</div>
 
     <div id="ingredients">Ingredients</div>
     <div id="instructions">Instructions</div>
+
+    <h1>YouTube Search</h1>
+    <input type="text" id="searchQuery" placeholder="Search for videos..." onkeypress="handleEnter(event)"/>
+    <button onclick="searchYouTube()">Search</button>
+
+
+    <div class="video-container" id="videoResults"></div> -->
 </body>
 </html>

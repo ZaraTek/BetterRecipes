@@ -1,5 +1,4 @@
-async function fetchVideo() {
-    const videoId = document.getElementById("videoId").value.trim();
+async function fetchVideo(videoId) {
     if (!videoId) {
         alert("Please enter a YouTube video ID.");
         return;
@@ -42,8 +41,7 @@ async function fetchVideo() {
     }
 }
 
-async function fetchCaptions() {
-    const videoId = document.getElementById('videoId').value;
+async function fetchCaptions(videoId) {
     const lang = "en";
     const apiKey = 'cj255q8vXyah9eS771ZFLQgk'; // Replace with actual API key
     const url = `https://www.searchapi.io/api/v1/search?api_key=${apiKey}&engine=youtube_transcripts&video_id=${videoId}&lang=${lang}`;
@@ -159,5 +157,52 @@ Only give me the instructions without any introductory or concluding phrases. He
 }
 
 async function searchYouTube() {
-    
+    const API_KEY = 'AIzaSyDR3bNdgAgA71trSKB35CpVrgyWLi2HTlU';  // Replace with actual API key
+    const query = document.getElementById('searchQuery').value;
+    const maxResults = 10;
+
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)} recipe&type=video&maxResults=${maxResults}&videoDuration=short&key=${API_KEY}`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (!data.items) {
+            alert("No results found.");
+            return;
+        }
+
+        const videoContainer = document.getElementById('videoResults');
+        videoContainer.innerHTML = ''; 
+
+        data.items.forEach(item => {
+            const videoId = item.id.videoId;
+            const title = item.snippet.title;
+            const thumbnail = item.snippet.thumbnails.medium.url;
+
+            const videoElement = document.createElement('div');
+            videoElement.classList.add('video');
+            videoElement.innerHTML = `
+                <button onclick='loadVideo("${videoId}")'>
+                    <img src="${thumbnail}" alt="${title}">
+                </button>
+                <p>${title}</p>
+            `;
+            videoContainer.appendChild(videoElement);
+        });
+    } catch (error) {
+        console.error("Error fetching YouTube data:", error);
+        alert("Failed to fetch YouTube data. Please check your API key.");
+    }
+}
+
+function handleEnter(event) {
+    if (event.key === "Enter") {
+        searchYouTube();
+    }
+}
+
+function loadVideo(videoId){
+    fetchVideo(videoId);
+    fetchCaptions(videoId);
 }
