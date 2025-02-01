@@ -62,7 +62,7 @@ async function transcribeAudio(videoUrl) {
         const whisperResponse = await fetch("https://api.openai.com/v1/audio/transcriptions", {
             method: "POST",
             headers: {
-                "Authorization": `Bearer YOUR_OPENAI_API_KEY` // Replace with your actual API key
+                "Authorization": `Bearer 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` // Replace with your actual API key
             },
             body: formData
         });
