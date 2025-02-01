@@ -41,3 +41,32 @@ async function fetchVideo() {
         alert("Failed to fetch video.");
     }
 }
+
+async function fetchCaptions() {
+    const videoId = document.getElementById('videoId').value;
+    const lang = "en";
+    const apiKey = 'cj255q8vXyah9eS771ZFLQgk'; // Replace with actual API key
+    const url = `https://www.searchapi.io/api/v1/search?api_key=${apiKey}&engine=youtube_transcripts&video_id=${videoId}&lang=${lang}`;
+
+    document.getElementById('captions').innerHTML = "Fetching captions...";
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.transcripts) {
+            let captions = data.transcripts.map(t => `<p><strong>[${t.start.toFixed(2)}s]</strong> ${t.text}</p>`).join('');
+            document.getElementById('captions').innerHTML = captions;
+            document.getElementById('captions').style.display = 'block';
+        } else {
+            document.getElementById('captions').innerHTML = "Captions not available for this video or language.";
+        }
+    } catch (error) {
+        document.getElementById('captions').innerHTML = "Error fetching captions.";
+        console.error(error);
+    }
+}
+
+async function gptProcess() {
+
+}

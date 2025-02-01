@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Video Downloader</title>
+    <title>BetterRecipes</title>
     <script defer src="script.js"></script>
     <style>
         body {
@@ -28,11 +28,15 @@
     </style>
 </head>
 <body>
-    <h1>YouTube Video Downloader</h1>
+    <h1>Better Recipes</h1>
     <input type="text" id="videoId" placeholder="Enter YouTube Video ID">
     <button onclick="fetchVideo()">Download</button>
     
     <h2 id="videoTitle"></h2>
     <video id="videoPlayer" controls></video>
+
+    <button onclick="fetchCaptions()">Get Captions</button>
+
+    <div id="captions"></div>
 </body>
 </html>
