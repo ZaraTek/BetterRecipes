@@ -27,7 +27,7 @@ async function fetchVideo() {
             return;
         }
 
-        // Select the best quality video
+        // Select the best quality video available
         const videoUrl = data.videos.items[0].url;
         const videoTitle = data.title;
 
@@ -35,9 +35,6 @@ async function fetchVideo() {
         const videoPlayer = document.getElementById("videoPlayer");
         videoPlayer.src = videoUrl;
         videoPlayer.style.display = "block";
-
-        // Process and transcribe audio
-        transcribeAudio(videoUrl);
 
     } catch (error) {
         console.error("Error fetching video:", error);
@@ -62,7 +59,7 @@ async function transcribeAudio(videoUrl) {
         const whisperResponse = await fetch("https://api.openai.com/v1/audio/transcriptions", {
             method: "POST",
             headers: {
-                "Authorization": `Bearer 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` // Replace with your actual API key
+                "Authorization": `Bearer YOUR_OPENAI_API_KEY` // Replace with your actual API key
             },
             body: formData
         });
