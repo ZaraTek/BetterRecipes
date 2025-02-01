@@ -1,0 +1,1282 @@
+ <!DOCTYPE html>
+<html>
+
+<style>
+:root {
+--LMbackgroundgrey: #16161b;
+--LMbackgroundpurple: #180434;
+--LMtextgrey: #ccc;
+--DMtextgrey: rgba(255,255,255, 0.5);
+--brandmagenta: #F4468F;
+--brandpurple: #BC66FF;
+--LMbtnlightgrey: rgba(154, 124, 144, 0.25);
+--LMbtnlightgreyHover: rgba(154, 124, 144, 0.45);
+--LMintextbtnlightgrey: rgba(124, 124, 144, 0.25);
+--LMintextbtnlightgreyHover: rgba(124, 124, 144, 0.40);
+--LMbtngrey: #4d4d4f;
+--LMbtngreyHover: #606063;
+--LMdividergrey: #4d4d4f;
+--LMsymbolgrey: #4d4d4f;
+--LMtextblack: #fff;
+--LMpostbackground: rgba(40, 40, 50, 0.85);
+}
+@media (pointer: fine) {
+    .upButton:hover {
+    background: var(--LMintextbtnlightgreyHover);
+    }
+    .modalUpButton:hover {
+    background: var(--LMintextbtnlightgreyHover);
+    }
+    .RecentGroups-ScrollRightBtn:hover {
+    background: var(--LMbtngreyHover);
+    }
+    .RecentGroups-ScrollLeftBtn:hover {
+    background: var(--LMbtngreyHover);
+    }
+    .LightGreyBtn:hover {
+    background: var(--LMbtnlightgreyHover);
+    }
+    .LightGreyCircleBtn:hover {
+    background: var(--LMbtnlightgreyHover);
+    }
+    .InTextBtn:hover {
+    background: var(--LMintextbtnlightgreyHover);
+    }
+    .OutlineBtn:hover {
+    border: 5px solid transparent;
+    padding: 0 10px;
+    }
+    .Subpost:hover {
+    background: var(--LMintextbtnlightgreyHover);
+    }
+}
+button {
+cursor: pointer;
+}
+.bottomSection {
+position: fixed;
+height: 83px;
+left: 0%;
+right: 0%;
+bottom: 0px;
+z-index: 3;
+}
+.tabBar {
+position: absolute;
+right: 20px;
+bottom: 30px;
+height: 165px;
+width: 60px;
+
+background: #DDDDFF1C;
+box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25), inset 1px 1px 1px rgba(255, 255, 255, 0.1);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+
+border-radius: 30px;
+display: block;
+}
+.tabBarBackground {
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: linear-gradient(0deg, var(--LMbackgroundgrey), #0000);
+}
+.iosNavigationBar {
+position: absolute;
+left: 32%;
+right: 32%;
+top: 84.34%;
+bottom: 9.64%;
+
+background: var(--LMtextblack);
+border-radius: 10px;
+}
+.homeButton {
+position: absolute;
+left: 2.93%;
+right: 86.4%;
+top: 10.84%;
+bottom: 40.96%;
+}
+.homeButtonSVG {
+position: absolute;
+width: 16px;
+height: 14px;
+left: calc(50% - 16px/2);
+top: 13px;
+}
+.navButton {
+position: relative;
+width: 60px;
+height: 46px;
+padding: 0;
+margin: 0;
+
+background: none;
+border: 0;
+}
+.navButtonSVG {
+position: absolute;
+width: 20px;
+height: 20px;
+left: calc(50% - 20px/2);
+top: 20px;
+}
+.uploadButton {
+position: absolute;
+background: none;
+border: 0;
+right: 5px;
+bottom: 5px;
+height: 50px;
+width: 50px;
+}
+.uploadButtonBackground {
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: linear-gradient(202.17deg, var(--brandmagenta) 8.58%, var(--brandpurple) 91.42%);
+box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25), inset 1px 1px 1px rgba(255, 255, 255, 0.10);
+border-radius: 50%;
+}
+.uploadButtonSVG {
+position: absolute;
+width: 20px;
+height: 20px;
+left: calc(50% - 20px/2);
+top: calc(50% - 20px/2);
+}
+html, body {
+margin: 0;
+font-style: normal;
+background: var(--LMbackgroundpurple);
+}
+/*iOS only*/
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.EventPreview {
+position: absolute;
+left: 0px;
+right: 0px;
+top: calc(90vh - (59px + 91px + 83px));
+padding-bottom: 100px;
+z-index: 2;
+}
+@supports(height: 100svh) {
+    .EventPreview {
+    top: calc(90svh - (59px + 91px + 83px));
+    }
+}
+.upButton {
+position: absolute;
+width: 33px;
+height: 33px;
+right: 11px;
+top: 13px;
+border: none;
+
+background: var(--LMintextbtnlightgrey);
+border-radius: 22.5px;
+}
+.EventPrevbackground {
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+bottom: -86px;
+
+background: var(--LMbackgroundgrey);
+border-radius: 25px;
+box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+
+transition: all .1s;
+}
+.CurrentClass {
+position: fixed;
+width: 241px;
+height: 298px;
+left: calc(50% - 241px/2);
+top: calc((90vh - (59px + 91px + 83px))/2 - 298px/2);
+}
+@supports(height: 100svh) {
+    .CurrentClass {
+    top: calc((90svh - (59px + 91px + 83px))/2 - 298px/2);
+    }
+}
+
+.CircleBar {
+position: absolute;
+width: 241px;
+height: 241px;
+left: calc(50% - 241px/2);
+top: 0px;
+}
+.TimeLeft{
+position: absolute;
+width: 129px;
+height: 65px;
+left: calc(50% - 129px/2);
+top: calc(50% - 65px/2 - 10px);
+
+font-weight: 700;
+font-size: 54px;
+line-height: 65px;
+/* identical to box height */
+
+align-items: center;
+text-align: center;
+
+color: #fff;
+}
+.EndsAt {
+position: absolute;
+width: 140px;
+height: 19px;
+left: calc(50% - 140px/2);
+top: calc(50% - 19px/2 + 32px);
+
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+align-items: center;
+text-align: center;
+
+color: var(--DMtextgrey);
+}
+.OuterBar {
+position: absolute;
+width: 210px;
+height: 210px;
+left: 0px;
+top: 0px;
+}
+.InnerBar {
+position: absolute;
+width: 210px;
+height: 210px;
+left: 26px;
+top: 4px;
+
+transform: rotate(90deg);
+mix-blend-mode: normal;
+
+stroke-linecap: round;
+stroke-dasharray: calc(660 * .7) 660;
+}
+#aDayButton {
+position: fixed;
+left: 18px;
+top: 24px;
+z-index: 1;
+background: linear-gradient(var(--LMbackgroundpurple), var(--LMbackgroundpurple)) padding-box, linear-gradient(120.22deg, var(--brandmagenta) -5.66%, var(--brandpurple) 93.43%) border-box;
+}
+.CurrentClassName {
+position: absolute;
+width: 90vw;
+height: 36px;
+left: calc(50% - 90vw/2);
+top: 256px;
+
+font-weight: 600;
+font-size: 17px;
+line-height: 20px;
+align-items: center;
+text-align: center;
+color: #fff;
+}
+.RecentGroups {
+display: flex;
+flex-wrap: nowrap;
+overflow: auto;
+position: relative;
+height: 90px;
+left: 0;
+right: 0;
+z-index: 1;
+}
+.StickyModalTop {
+position: sticky;
+height: 59px;
+width: 100%;
+top: 0;
+z-index: 2;
+}
+.Group-Container {
+position: relative;
+width: calc(100% / 3.5); /*113*/
+height: 100%;
+flex-shrink: 0;
+}
+.DividerContainer {
+position: relative;
+width: 20px; /*113*/
+height: 100%;
+
+flex-shrink: 0;
+}
+.Divider {
+position: absolute;
+width: 1px;
+top: 7%;
+height: 80%;
+flex-shrink: 0;
+left: calc(50% - 2px);
+
+border-radius: 4px;
+background: var(--LMdividergrey);
+}
+.Group-Icon {
+box-sizing: border-box;
+
+position: absolute;
+width: 67px;
+height: 67px;
+left: calc(50% - 67px/2);
+top: 0px;
+
+background: var(--LMpostbackground);
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+border-radius: 25px;
+}
+.Group-Text {
+position: absolute;
+height: 17px;
+left: 5px;
+right: 5px;
+top: 70px;
+
+white-space: nowrap;
+overflow: hidden;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+
+text-align: center;
+
+color: var(--LMtextgrey);
+}
+.Group-TextFade {
+position: absolute;
+top: 0;
+bottom: 0;
+right: 0;
+width: 15px;
+background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, var(--LMbackgroundgrey) 100%);
+}
+.RecentGroups-ScrollRightBtn {
+position: absolute;
+width: 30px;
+height: 30px;
+right: 11px;
+top: calc((59px + (90px / 2)) - 20px);
+
+border: none;
+background: var(--LMbtngrey);
+
+border-radius: 22.5px;
+visibility: hidden;
+
+z-index: 1;
+}
+.RecentGroups-ScrollLeftBtn {
+position: absolute;
+width: 30px;
+height: 30px;
+left: 11px;
+top: calc((59px + (90px / 2)) - 20px);
+
+border: none;
+background: var(--LMbtngrey);
+
+border-radius: 22.5px;
+visibility: hidden;
+
+z-index: 1;
+}
+.Post {
+background: none;
+position: relative;
+margin: 20px 20px 0px;
+padding: 15px 15px;
+
+z-index: 1;
+}
+.SecondaryText {
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+
+color: var(--LMtextgrey);
+}
+.PrimaryText {
+font-weight: 400;
+font-size: 17px;
+line-height: 20px;
+
+color: var(--LMtextblack);
+}
+.Post-Title {
+margin: 5px 0 5px 0;
+}
+.Post-SharedInContainer {
+display: flex;
+flex-wrap: nowrap;
+align-items: center;
+
+width: calc(100% - 40px);
+}
+.AccountName {
+flex-shrink: 0;
+}
+.PinIcon {
+position: absolute;
+padding: 0;
+right: 18px;
+top: 18px;
+
+background: none;
+border: none;
+}
+.SubpostContainer {
+position: relative;
+margin-top: 9px;
+margin-bottom: 9px;
+
+transition: all .1s;
+}
+.Subpost {
+position: relative;
+display: flex;
+align-items: center;
+padding: 0 18px;
+left: 55px;
+height: 40px;
+width: calc(100% - (20px + 55px));
+
+background: var(--LMpostbackground);
+
+
+box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25), inset 1px 1px 1px rgba(255, 255, 255, 0.10);
+backdrop-filter: blur(37.5px);
+-webkit-backdrop-filter: blur(37.5px);
+
+border: none;
+border-radius: 20px;
+}
+.SubpostSharedBy {
+position: relative;
+margin: 3px 0 3px 69px;
+}
+.Subpost-Title {
+margin-right: 15px;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+}
+.Subpost-ArrowBtn {
+margin: 0;
+padding: 0;
+
+border: none;
+background: none;
+}
+.SubpostL {
+position: absolute;
+width: 19px;
+height: 38px;
+left: 28px;
+top: 2px; 
+}
+.LightGreyBtn {
+display: flex;
+align-items: center;
+height: 40px;
+padding: 0 15px;
+
+border: none;
+border-radius: 20px;
+
+background: var(--LMbtnlightgrey);
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05), inset 0px 1px 1px rgba(255, 255, 255, 0.05);
+}
+.LeftAlignedBtn {
+margin-right: 5px;
+}
+.RightAlignedBtn {
+margin-left: 5px;
+}
+.CommentBtn-SVG {
+margin-right: 7px;
+}
+.Post-ButtonRow {
+margin-top: 12px;
+display: flex;
+flex-wrap: wrap;
+row-gap: 5px;
+}
+.LightGreyCircleBtn {
+display: flex;
+align-items: center;
+justify-content: center;
+height: 40px;
+aspect-ratio: 1 / 1;
+padding: 0;
+
+border: none;
+border-radius: 20px;
+
+background: var(--LMbtnlightgrey);
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05), inset 0px 1px 1px rgba(255, 255, 255, 0.05);
+}
+.OutlineBtn {
+box-sizing: border-box;
+display: flex;
+align-items: center;
+height: 40px;
+padding: 0 12px;
+
+background: linear-gradient(var(--LMpostbackground), var(--LMpostbackground)) padding-box, linear-gradient(120.22deg, var(--brandmagenta) -5.66%, var(--brandpurple) 93.43%) border-box;
+border: 3px solid transparent;
+border-radius: 20px;
+}
+.Post-AddSubpostSVG {
+margin-right: 7px;
+}
+.Spacer {
+flex-grow: 1;
+}
+.SvhFinder {
+position: fixed;
+width:10px;
+height: 100vh;
+background : none;
+z-index: -1;
+}
+@supports(height: 100svh) {
+    .SvhFinder {
+    height: 100svh;
+    }
+}
+.ModalTopBG {
+position: relative;
+width: 100%;
+height: 100%;
+top: 0;
+
+background: linear-gradient(0deg, #0000, var(--LMbackgroundgrey));
+box-shadow: inset 0px 1px 1px rgba(255, 255, 255, 0.05);
+border-bottom: 0px solid var(--LMdividergrey);
+border-radius: 25px 25px 0 0;
+
+transition: all .1s;
+}
+.SubpostExpand {
+background: lightgrey;
+position: relative;
+padding: 5px 15px;
+margin: 0 20px 0 55px;
+max-height: 40px;
+overflow: hidden;
+
+background: var(--LMpostbackground);
+
+
+box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25), inset 1px 1px 1px rgba(255, 255, 255, 0.10);
+backdrop-filter: blur(37.5px);
+-webkit-backdrop-filter: blur(37.5px);
+
+border-radius: 25px;
+transition: all .1s;
+}
+.SubpostExpand-Title {
+margin-bottom: 5px;
+}
+.InTextBtn {
+border: none;
+padding: 4px 6px;
+border-radius: 7px;
+margine: 0;
+font-weight: 600;
+
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+
+background: var(--LMintextbtnlightgrey);
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05), inset 0px 1px 1px rgba(255, 255, 255, 0.05);
+}
+.SharedInText {
+flex-shrink: 0;
+}
+.BtnText {
+font-weight: 500;
+font-size: 16px;
+
+color: var(--LMtextblack);
+}
+/*disables selection*/
+* {
+font-family: 'Poppins', san-serif;
+
+-webkit-touch-callout: none; /* iOS Safari */
+-webkit-user-select: none; /* Safari */
+-khtml-user-select: none; /* Konqueror HTML */ 
+-moz-user-select: none; /* Old versions of Firefox */
+-ms-user-select: none; /* Internet Explorer/Edge */
+user-select: none; /* Non-prefixed version, currently*/
+}
+/*@supports (-webkit-touch-callout: none) {
+    * {
+    font-family: sans-serif;
+    }
+}*/
+.PinkCircle {
+position: absolute;
+width: 112px;
+height: 76px;
+right: 21px;
+bottom: 1px;
+
+border-radius:  50% 50% 30px 0;
+background: #F4468F;
+
+animation-name: PinkCircleAni;
+animation-duration: 2s;
+animation-iteration-count: infinite;
+}
+@keyframes PinkCircleAni {
+  0%   {height: 76px;}
+  50%  {height: 106px;}
+  100% {height: 76px;}
+}
+.PurpleCircle {
+position: absolute;
+width: 123px;
+height: 61px;
+right: 137px;
+bottom: 1px;
+
+border-radius:  50% 50% 0 50%;
+background: #BC66FF;
+
+animation-name: PurpleCircleAni;
+animation-duration: 2s;
+animation-iteration-count: infinite;
+}
+@keyframes PurpleCircleAni {
+  0%   {right:107px;}
+  50%  {right:77px;}
+  100% {right:107px;}
+}
+.OrangeCircle {
+position: absolute;
+width: 106px;
+height: 89px;
+left: 21px;
+top: 1px;
+
+border-radius:  30px 50% 50% 50%;
+background: #FE6B3C;
+
+animation-name: OrangeCircleAni;
+animation-duration: 2s;
+animation-iteration-count: infinite;
+}
+@keyframes OrangeCircleAni {
+  0%   {height:89px; width:106px;}
+  25%  {height:109px; width:106px;}
+  50%   {height:89px; width:106px;}
+  75% {height:89px; width:126px;}
+  100%   {height:89px; width:106px;}
+}
+.PostContainer {
+position: relative;
+}
+.PostBG {
+position: absolute;
+left: 20px;
+right: 20px;
+height: 100%;
+top: 0;
+
+background: var(--LMpostbackground);
+
+box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25), inset 1px 1px 1px rgba(255, 255, 255, 0.10);
+backdrop-filter: blur(37.5px);
+-webkit-backdrop-filter: blur(37.5px);
+
+border-radius: 30px;
+transition: all .1s;
+}
+.newPostContainer{
+position: fixed;
+top: 0;
+height: 100vh;
+width: 100vw;
+
+background: none;
+z-index: 3;
+
+visibility: hidden;
+overflow: scroll;
+
+transition: all .2s;
+}
+.newPostForm {
+position: absolute;
+top: calc(100vh);
+left: 0;
+right: 0;
+padding-bottom: 1000px;
+
+border-radius: 25px;
+background: #DDDDFF1C;
+box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+
+transition: all .1s;
+transition: border-radius .2s;
+}
+@supports(height: 100svh) {
+    .newPostForm {
+    top: calc(100svh);
+    }
+}
+.spacerAboveForm {
+width: 100%;
+height: 100vh;
+
+background: none;
+}
+@supports(height: 100svh) {
+    .spacerAboveForm {
+    height: 100svh;
+    }
+}
+.modalTopBar {
+position: sticky;
+height: 59px;
+width: 100%;
+top: 0;
+z-index: 2;
+
+box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1), inset 1px 1px 1px rgba(255, 255, 255, 0.1), inset 0px -1px 1px rgba(255, 255, 255, 0.1);
+border-radius: 25px 25px 0 0;
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+
+transition: all .1s;
+}
+.modalTopSpacer {
+position: absolute;
+height: 59px;
+width: 100%;
+top: 0;
+}
+.modalUpButton {
+position: absolute;
+width: 33px;
+height: 33px;
+right: 11px;
+top: 13px;
+border: none;
+
+display: flex;
+align-items: center;
+justify-content: center;
+aspect-ratio: 1 / 1;
+padding: 0;
+
+background: var(--LMintextbtnlightgrey);
+background: none;
+border-radius: 50%;
+}
+</style>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<meta name="viewport" content="initial-scale=1.0,width=device-width" />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body ontouchend="TouchEnd()" ontouchstart="TouchStart()">
+<div class="wrap">
+    <button class="OutlineBtn" id="aDayButton">
+        <span class="BtnText" style="color: #fff;">A day</span>
+    </button>
+    <div class="CurrentClass">
+        <div class="CircleBar">
+            <div class="TimeLeft">1:03</div>
+            <div class="EndsAt">ends at 2:20</div>
+            <div class="OuterBar">
+                <svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 120C15 177.99 62.0101 225 120 225C177.99 225 225 177.99 225 120C225 87.4788 210.215 58.4107 187 39.1509C168.819 24.0677 145.469 15 120 15C62.0101 15 15 62.0101 15 120Z" stroke="url(#paint0_linear_11_2)" stroke-opacity="0.2" stroke-width="30"/>
+                <defs>
+                    <linearGradient id="paint0_linear_11_2" x1="35" y1="26" x2="211" y2="225" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="var(--brandmagenta)"/>
+                        <stop offset="1" stop-color="var(--brandpurple)"/>
+                    </linearGradient>
+                </defs>
+                </svg>
+            </div>
+            <div class="InnerBar">
+                <svg width="232" height="232" viewBox="0 0 232 232" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="116" cy="116" r="105" stroke="url(#paint0_linear_23_233)" stroke-width="22"/>
+                    <defs>
+                        <linearGradient id="paint0_linear_23_233" x1="11" y1="202" x2="232.5" y2="38" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="var(--brandmagenta)"/>
+                            <stop offset="1" stop-color="var(--brandpurple)"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+        <div class="CurrentClassName">
+            &#127757; African American Studies Honors
+        </div>
+    </div>
+    <div class="EventPreview">
+        <div class="EventPrevbackground"></div>
+        <div class="StickyModalTop">
+            <div class="ModalTopBG"></div>
+            <button class="upButton" onclick="pageScroll()"></button>
+        </div>
+        <div class="RecentGroupsContainer" onmouseover="ShowNextpageBtn()" ontouchend="HideNextpageBtn()" onmouseleave="HideNextpageBtn()">
+            <div class="RecentGroups">
+                
+            </div>
+            <button class="RecentGroups-ScrollRightBtn" onclick="RecentGroupsScrollRight()"></button>
+            <button class="RecentGroups-ScrollLeftBtn" onclick="RecentGroupsScrollLeft()"></button>
+        </div>
+    </div>
+    <div class="bottomSection">
+        <div class="tabBarBackground"></div>
+            
+        <div class="tabBar">
+            <button class="navButton">
+                <svg class="navButtonSVG" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.5 11.5L16.5 16.5M7.49997 13.5C4.18627 13.5 1.5 10.8137 1.5 7.5C1.5 4.1863 4.18627 1.50002 7.49997 1.5C10.8137 1.49998 13.5 4.18628 13.5 7.5C13.5 10.8137 10.8137 13.5 7.49997 13.5Z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <button class="navButton">
+                <svg class="navButtonSVG" width="13" height="18" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.47019 9.32529C8.67933 9.32529 10.4702 7.53443 10.4702 5.32529C10.4702 3.11615 8.67933 1.32529 6.47019 1.32529C4.26106 1.32529 2.47019 3.11615 2.47019 5.32529C2.47019 7.53443 4.26106 9.32529 6.47019 9.32529ZM6.47019 9.32529C12.4702 9.32529 11.9702 16.3253 11.9702 16.3253H0.970193C0.970193 16.3253 0.470234 9.32529 6.47019 9.32529Z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <button class="uploadButton">
+                <div class="uploadButtonBackground"></div>
+                <svg class="uploadButtonSVG" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 0V8M8 16V8M8 8H16M8 8H0" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+        <div class="iosNavigationBar"></div>
+    </div>
+    
+</div>
+<div class="SvhFinder"></div>
+<script>
+var isAnimating = false;
+var isScreenTouched = false;
+var isModalTouched = false;
+var isModalOpen = false;
+var isModalFullscreen = false;
+var modalOpenPercent = .8;
+var isBtnShowingRecentGroups = false;
+var fullscreenScrollAmount = $(".SvhFinder").height() * .90 - 233;
+var scrollTop;
+
+var sharedIn = ["&#x1F30D; African American Studies 3B", "&#x1F3FA; Latin Club", "&#x1F3FA; Olive Garden Conisuers", "&#x1F30D; African American Studies 3B", "&#x1F3FA; Latin Club", "&#x1F3FA; Olive Garden Conisuers", "&#x1F30D; African American Studies 3B", "&#x1F3FA; Latin Club", "&#x1F3FA; Olive Garden Conisuers", "&#x1F30D; African American Studies 3B", "&#x1F3FA; Latin Club", "&#x1F3FA; Olive Garden Conisuers", "&#x1F30D; African American Studies 3B", "&#x1F3FA; Latin Club", "&#x1F3FA; Olive Garden Conisuers", "&#x1F30D; African American Studies 3B", "&#x1F3FA; Latin Club", "&#x1F3FA; Olive Garden Conisuers", "&#x1F30D; African American Studies 3B", "&#x1F3FA; Latin Club", "&#x1F3FA; Olive Garden Conisuers", "&#x1F30D; African American Studies 3B", "&#x1F3FA; Latin Club", "&#x1F3FA; Olive Garden Conisuers"]
+var sharedBy = [["@Sam", "@Malachy", "@Sam"], ["@Lucas"], ["@Gabby"], ["@Sam", "@Malachy", "@Sam"], ["@Lucas"], ["@Gabby"], ["@Sam", "@Malachy", "@Sam"], ["@Lucas"], ["@Gabby"], ["@Sam", "@Malachy", "@Sam"], ["@Lucas"], ["@Gabby"], ["@Sam", "@Malachy", "@Sam"], ["@Lucas"], ["@Gabby"], ["@Sam", "@Malachy", "@Sam"], ["@Lucas"], ["@Gabby"], ["@Sam", "@Malachy", "@Sam"], ["@Lucas"], ["@Gabby"], ["@Sam", "@Malachy", "@Sam"], ["@Lucas"], ["@Gabby"]];
+var titles = [["Unit 4 Test", "Quizlet for anyone who needs it", "Here's the terms list"],["Intrest Meeting"],["HalloweenParty"],["Unit 4 Test", "Quizlet for anyone who needs it", "Here's the terms list"],["Intrest Meeting"],["HalloweenParty"], ["Unit 4 Test", "Quizlet for anyone who needs it", "Here's the terms list"],["Intrest Meeting"],["HalloweenParty"],["Unit 4 Test", "Quizlet for anyone who needs it", "Here's the terms list"],["Intrest Meeting"],["HalloweenParty"],["Unit 4 Test", "Quizlet for anyone who needs it", "Here's the terms list"],["Intrest Meeting"],["HalloweenParty"],["Unit 4 Test", "Quizlet for anyone who needs it", "Here's the terms list"],["Intrest Meeting"],["HalloweenParty"], ["Unit 4 Test", "Quizlet for anyone who needs it", "Here's the terms list"],["Intrest Meeting"],["HalloweenParty"],["Unit 4 Test", "Quizlet for anyone who needs it", "Here's the terms list"],["Intrest Meeting"],["HalloweenParty"]];
+
+/*setInterval (UpdateText, 1);
+function UpdateText() {
+    scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+    $(".StickyModalTop").html("width: " + window.innerWidth + ", height: " + window.innerHeight + ", scrollHeight: " + scrollHeight + ", scrollTop: " + scrollTop + ", scrollBottom: " + (scrollHeight - (scrollTop + window.innerHeight)));
+}*/
+$(".RecentGroups").append(
+    '<div class="DividerContainer"></div>'
+);
+for (let i = 0; i < 3; i++) {
+    $(".RecentGroups").append(
+        '<div class="Group-Container">'+
+            '<div class="Group-Icon"></div>'+
+            '<div class="Group-Text">Intro to photography<div class="Group-TextFade"></div></div>'+
+        '</div>'
+    );
+}
+$(".RecentGroups").append(
+    '<div class="DividerContainer"><div class="Divider"></div></div>'
+);
+for (let i = 0; i < 200; i++) {
+    $(".RecentGroups").append(
+        '<div class="Group-Container">'+
+            '<div class="Group-Icon"></div>'+
+            '<div class="Group-Text">Intro to photography<div class="Group-TextFade"></div></div>'+
+        '</div>'
+    );
+}
+$(".RecentGroups").append(
+    '<div class="DividerContainer"></div>'
+);
+
+for (let i = 0; i < titles.length; i++) {
+    //Post
+    $(".EventPreview").append(
+        '<div class="PostContainer">'+
+            '<div class="PinkCircle"></div>'+
+            '<div class="PurpleCircle"></div>'+
+            '<div class="OrangeCircle"></div>'+
+            '<div class="PostBG"></div>'+
+            '<div class="Post">'+
+                '<div class="SecondaryText Post-SharedInContainer">'+
+                    '<div class="SharedInText">Shared in&nbsp</div>'+
+                    '<button class="SecondaryText InTextBtn">' + sharedIn[i] + '</button>'+
+                    '<div class="AccountName">&nbspby <b><button class="SecondaryText InTextBtn">' + sharedBy[i][0] + '</button></div>'+
+                '</div>'+
+                '<button class="PinIcon">'+
+                    '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">'+
+                        '<path d="M5.25 12.75L9 16.5L10.5 15V12L14 8.5H15.5L17 7L11 1L9.5 2.5V4L6 7.5H3L1.5 9L5.25 12.75ZM5.25 12.75L1 17" stroke="var(--LMtextblack)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'+
+                    '</svg>'+
+                '</button>'+
+                '<div class="PrimaryText Post-Title">'+titles[i][0]+'</div>'+
+                '<div class="SecondaryText">On November 28th</div>'+
+                '<div class="Post-ButtonRow">'+
+                    '<button class="LightGreyBtn LeftAlignedBtn">'+
+                        '<svg class="CommentBtn-SVG" width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">'+
+                            '<path d="M18 8.5C18 12.6421 14.4438 16 10.057 16C8.6128 16 7.25861 15.6361 6.0917 15L1.05498 15.5C0.878465 15.6667 1.02639 15.2 3.03018 12C2.44524 10.9551 2.11404 9.76409 2.11404 8.5C2.11404 4.35786 5.67023 1 10.057 1C14.4438 1 18 4.35786 18 8.5Z" stroke="var(--LMtextblack)" stroke-width="2" stroke-linejoin="round"/>'+
+                        '</svg>'+
+                        '<span class="CommentText BtnText" style="color: var(--LMtextgrey);">8</span>'+
+                    '</button>'+
+                    '<button class="LightGreyCircleBtn LeftAlignedBtn">'+
+                        '<svg width="17" height="5" viewBox="0 0 17 5" fill="none" xmlns="http://www.w3.org/2000/svg">'+
+                            '<path d="M7.5 2.5C7.5 1.94772 7.94772 1.5 8.5 1.5C9.05228 1.5 9.5 1.94772 9.5 2.5C9.5 3.05228 9.05228 3.5 8.5 3.5C7.94772 3.5 7.5 3.05228 7.5 2.5Z" fill="var(--LMtextblack)"/>'+
+                            '<path d="M13.5 2.5C13.5 1.94772 13.9477 1.5 14.5 1.5C15.0523 1.5 15.5 1.94772 15.5 2.5C15.5 3.05228 15.0523 3.5 14.5 3.5C13.9477 3.5 13.5 3.05228 13.5 2.5Z" fill="var(--LMtextblack)"/>'+
+                            '<path d="M2.5 1.5C1.94772 1.5 1.5 1.94772 1.5 2.5C1.5 3.05228 1.94772 3.5 2.5 3.5C3.05228 3.5 3.5 3.05228 3.5 2.5C3.5 1.94772 3.05228 1.5 2.5 1.5Z" fill="var(--LMtextblack)"/>'+
+                            '<path d="M7.5 2.5C7.5 1.94772 7.94772 1.5 8.5 1.5C9.05228 1.5 9.5 1.94772 9.5 2.5C9.5 3.05228 9.05228 3.5 8.5 3.5C7.94772 3.5 7.5 3.05228 7.5 2.5Z" stroke="var(--LMtextblack)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'+
+                            '<path d="M13.5 2.5C13.5 1.94772 13.9477 1.5 14.5 1.5C15.0523 1.5 15.5 1.94772 15.5 2.5C15.5 3.05228 15.0523 3.5 14.5 3.5C13.9477 3.5 13.5 3.05228 13.5 2.5Z" stroke="var(--LMtextblack)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'+
+                            '<path d="M2.5 1.5C1.94772 1.5 1.5 1.94772 1.5 2.5C1.5 3.05228 1.94772 3.5 2.5 3.5C3.05228 3.5 3.5 3.05228 3.5 2.5C3.5 1.94772 3.05228 1.5 2.5 1.5Z" stroke="var(--LMtextblack)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'+
+                        '</svg>'+
+                    '</button>'+
+                    '<div class="Spacer"></div>'+
+                    '<button class="OutlineBtn RightAlignedBtn">'+
+                        '<svg class="Post-AddSubpostSVG" width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">'+
+                            '<path d="M1 8.5H8M15 8.5H8M8 8.5V1.5V15.5" stroke="var(--LMtextblack)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'+
+                        '</svg>'+
+                        '<span class="BtnText">Add Subpost</span>'+
+                    '</button>'+
+                '</div>'+
+            '</div>'+
+        '</div>'
+    );
+    //Subpost
+    for (let j = 1; j < titles[i].length; j++) {
+        $(".EventPreview").append(
+            '<div class="SubpostContainer">'+
+                '<svg class="SubpostL" width="23" height="42" viewBox="0 0 23 42" fill="none" xmlns="http://www.w3.org/2000/svg">'+
+                    '<path d="M2 2V32C2 32 1.99998 35 4.5 37.5C7.00002 40 10 40 10 40H21" stroke="var(--LMsymbolgrey)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>'+
+                '</svg>'+
+                '<div class="SecondaryText SubpostSharedBy"><button class="SecondaryText InTextBtn">' + sharedBy[i][j] + '</button></div>'+
+                '<button class="Subpost">'+
+                    '<span class="PrimaryText Subpost-Title">' + titles[i][j] + '</span>'+
+                    '<span class="Spacer"></span>'+
+                    '<span class="Subpost-ArrowBtn">'+
+                        '<svg width="15" height="7" viewBox="0 0 15 7" fill="none" xmlns="http://www.w3.org/2000/svg">'+
+                            '<path d="M14 1L7.5 6L1 1" stroke="var(--LMtextblack)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'+
+                        '</svg>'+
+                    '</span>'+
+                '</button>'+
+            '</div>'
+        );
+    }
+}
+
+$(".Subpost").click(function(){
+    $(this).replaceWith(
+        '<div class="SubpostExpand">'+
+            '<div class="PrimaryText SubpostExpand-Title">'+$(this).text()+'</div>'+
+            '<div class="SecondaryText">On November 28th</div>'+
+            '<div class="Post-ButtonRow">'+
+                '<button class="LightGreyBtn LeftAlignedBtn">'+
+                    '<svg class="CommentBtn-SVG" width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">'+
+                        '<path d="M18 8.5C18 12.6421 14.4438 16 10.057 16C8.6128 16 7.25861 15.6361 6.0917 15L1.05498 15.5C0.878465 15.6667 1.02639 15.2 3.03018 12C2.44524 10.9551 2.11404 9.76409 2.11404 8.5C2.11404 4.35786 5.67023 1 10.057 1C14.4438 1 18 4.35786 18 8.5Z" stroke="var(--LMtextblack)" stroke-width="2" stroke-linejoin="round"/>'+
+                    '</svg>'+
+                    '<span class="CommentText BtnText" style="color: var(--LMtextgrey);">8</span>'+
+                '</button>'+
+                '<button class="LightGreyCircleBtn LeftAlignedBtn">'+
+                    '<svg width="17" height="5" viewBox="0 0 17 5" fill="none" xmlns="http://www.w3.org/2000/svg">'+
+                        '<path d="M7.5 2.5C7.5 1.94772 7.94772 1.5 8.5 1.5C9.05228 1.5 9.5 1.94772 9.5 2.5C9.5 3.05228 9.05228 3.5 8.5 3.5C7.94772 3.5 7.5 3.05228 7.5 2.5Z" fill="var(--LMtextblack)"/>'+
+                        '<path d="M13.5 2.5C13.5 1.94772 13.9477 1.5 14.5 1.5C15.0523 1.5 15.5 1.94772 15.5 2.5C15.5 3.05228 15.0523 3.5 14.5 3.5C13.9477 3.5 13.5 3.05228 13.5 2.5Z" fill="var(--LMtextblack)"/>'+
+                        '<path d="M2.5 1.5C1.94772 1.5 1.5 1.94772 1.5 2.5C1.5 3.05228 1.94772 3.5 2.5 3.5C3.05228 3.5 3.5 3.05228 3.5 2.5C3.5 1.94772 3.05228 1.5 2.5 1.5Z" fill="var(--LMtextblack)"/>'+
+                        '<path d="M7.5 2.5C7.5 1.94772 7.94772 1.5 8.5 1.5C9.05228 1.5 9.5 1.94772 9.5 2.5C9.5 3.05228 9.05228 3.5 8.5 3.5C7.94772 3.5 7.5 3.05228 7.5 2.5Z" stroke="var(--LMtextblack)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'+
+                        '<path d="M13.5 2.5C13.5 1.94772 13.9477 1.5 14.5 1.5C15.0523 1.5 15.5 1.94772 15.5 2.5C15.5 3.05228 15.0523 3.5 14.5 3.5C13.9477 3.5 13.5 3.05228 13.5 2.5Z" stroke="var(--LMtextblack)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'+
+                        '<path d="M2.5 1.5C1.94772 1.5 1.5 1.94772 1.5 2.5C1.5 3.05228 1.94772 3.5 2.5 3.5C3.05228 3.5 3.5 3.05228 3.5 2.5C3.5 1.94772 3.05228 1.5 2.5 1.5Z" stroke="var(--LMtextblack)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'+
+                    '</svg>'+
+                '</button>'+
+            '</div>'+
+        '</div>'
+    );
+    $(".SubpostExpand").animate({maxHeight: "300px"}, {duration: 200, queue: false});
+    $(".SubpostExpand").animate({padding: "15px 15px"}, {duration: 100, queue: false});
+});
+
+function NewModal() {
+    $(".wrap").append(
+        '<div class="newPostContainer" ontouchend="ModalTouchEnd()" ontouchstart="ModalTouchStart()">'+
+            '<div class="spacerAboveForm"></div>'+
+            '<div class="modalTopBar">'+
+                '<button class="modalUpButton">'+
+                    '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">'+
+                        '<path d="M1 1L7 7M13 13L7 7M7 7L13 1M7 7L1 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'+
+                    '</svg>'+
+                '</button>'+
+            '</div>'+
+            '<div class="newPostForm">'+
+                '<div class="modalTopSpacer"></div>'+
+            '</div>'+
+        '</div>'
+    );
+    modalOpenPercent = .77;
+    $(".newPostContainer").css("visibility", "visible");
+    $(".newPostContainer").css("background", "#00000040");
+    $(".newPostContainer").animate(
+        { scrollTop: $(window).height() * modalOpenPercent },
+        200,
+        function(){
+            isModalOpen = true;
+        }
+    );
+}
+
+function CloseModal() {
+    isModalOpen = false;
+    $(".newPostContainer").css("background", "red");
+    /*$(".newPostContainer").animate(
+        { scrollTop: 0 },
+        200,
+        function(){
+            $(".newPostContainer").css("visibility", "hidden");
+        }
+    );*/
+}
+
+$(".uploadButton").click(function(){
+    NewModal();
+});
+
+$(".spacerAboveForm").click(function(){
+    CloseModal();
+});
+
+function ModalTouchEnd() {
+    isModalTouched = false;
+    if ($(".newPostContainer").scrollTop() + 1 < $(window).height() * modalOpenPercent ) {
+        CloseModal();
+    }
+    if ($(".newPostContainer").scrollTop() > $(window).height() * modalOpenPercent && $(".newPostContainer").scrollTop() < $(window).height() ) {
+        setTimeout(function() {
+            if ($(".newPostContainer").scrollTop() > $(window).height() * modalOpenPercent && $(".newPostContainer").scrollTop() < $(window).height() ) {
+                modalOpenPercent = 1;
+                $(".newPostForm").css("border-radius", "0px");
+                $(".modalTopBar").css("border-radius", "0px");
+                $(".modalTopBar").css("box-shadow", "0px 0px 30px rgba(0, 0, 0, 0.1), inset 0px -1px 1px rgba(255, 255, 255, 0.1)");
+                $(".newPostContainer").animate(
+                    { scrollTop: $(window).height() },
+                    200
+                );
+            }
+        }, 100);
+    }
+}
+
+function ModalTouchStart() {
+    isModalTouched = true;
+}
+
+$(".newPostContainer").scroll(function(){
+    if (!isModalTouched && isModalOpen) {
+        if ($(".newPostContainer").scrollTop() < $(window).height() * modalOpenPercent ) {
+            $(".newPostContainer").scrollTop($(window).height() * modalOpenPercent);
+        }
+    }
+    if ($(".newPostContainer").scrollTop() > $(window).height()) {
+        modalOpenPercent = 1;
+        $(".newPostForm").css("border-radius", "0px");
+        $(".modalTopBar").css("border-radius", "0px");
+        $(".modalTopBar").css("box-shadow", "0px 0px 30px rgba(0, 0, 0, 0.1), inset 0px -1px 1px rgba(255, 255, 255, 0.1)");
+    }
+    if ($(".newPostContainer").scrollTop() < $(window).height()) {
+        $(".newPostForm").css("border-radius", "25px");
+        $(".modalTopBar").css("border-radius", "25px 25px 0 0");
+        $(".modalTopBar").css("box-shadow", "0px 0px 30px rgba(0, 0, 0, 0.1), inset 1px 1px 1px rgba(255, 255, 255, 0.1), inset 0px -1px 1px rgba(255, 255, 255, 0.1)");
+    }
+});
+
+$(".modalUpButton").click(function(){
+    CloseModal();
+});
+
+HackyCSS();
+
+function RecentGroupsScrollRight() {
+    $(".RecentGroups").animate({ 
+        scrollLeft: "+=" + (window.innerWidth - 82) }
+    );
+}
+function RecentGroupsScrollLeft() {
+    $(".RecentGroups").animate({ 
+        scrollLeft: "-=" + (window.innerWidth - 82) }
+    );
+}
+function ShowNextpageBtn() {
+    isBtnShowingRecentGroups = true;
+    RecentGroupsBtnCheck();
+}
+function HideNextpageBtn() {
+    isBtnShowingRecentGroups = false;
+    RecentGroupsBtnCheck();
+    setTimeout(function() {isBtnShowingRecentGroups = false;}, 1);
+    setTimeout(RecentGroupsBtnCheck, 1);
+}
+function RecentGroupsBtnCheck() {
+    $(".RecentGroups-ScrollRightBtn").css("visibility", "hidden");
+    $(".RecentGroups-ScrollLeftBtn").css("visibility", "hidden");
+    if (isBtnShowingRecentGroups) {
+        $(".RecentGroups-ScrollRightBtn").css("visibility", "visible");
+        if ($(".RecentGroups").scrollLeft() !== 0) {
+                $(".RecentGroups-ScrollLeftBtn").css("visibility", "visible");
+        }
+    }
+}
+function pageScroll() {
+    if (!isAnimating && !isModalFullscreen) {
+        isAnimating = true;
+    	$("html, body").animate({ 
+            scrollTop: fullscreenScrollAmount },
+            100,
+            function () { 
+                isAnimating = false;
+                isModalFullscreen = true;
+                //$("html, body").css("background", "white");
+            }
+        );
+    }
+    if (!isAnimating && isModalFullscreen) {
+        isAnimating = true;
+        //$("html, body").css("background", "#180434");
+    	$("html, body").animate({ 
+            scrollTop: 0 },
+            100,
+            function () { 
+                function CheckTouch() {
+                    if(isScreenTouched) {
+                        window.setTimeout(CheckTouch, 1); /* this checks the flag every 100 milliseconds*/
+                    } else {
+                        isAnimating = false;
+                        if (((document.documentElement.scrollTop || document.body.scrollTop) < fullscreenScrollAmount - 10) && ((document.documentElement.scrollTop || document.body.scrollTop) > 10)) {
+                            pageScroll();
+                        }
+                    }
+                }
+                CheckTouch();
+                isModalFullscreen = false;
+            }
+        );
+    }
+    
+}
+$(function(){
+    $(".RecentGroups").scroll(function(){
+        RecentGroupsBtnCheck();
+    });
+    $(document).scroll(function(){
+        /*$(".PostBG").each(function() {
+            postScrollPercent = (($(this).offset().top - $(document).scrollTop()) / window.innerHeight) * 20;
+            $(this).css("top", (7 - postScrollPercent) + "px");
+        });
+        $(".SubpostContainer").each(function() {
+            postScrollPercent = (($(this).offset().top - $(document).scrollTop()) / window.innerHeight) * 20;
+            $(this).css("margin-top", (20 - postScrollPercent) + "px");
+            $(this).css("margin-bottom", (postScrollPercent - 5) + "px");
+        });*/
+        
+        
+
+        function CheckTouch() {
+            if(isScreenTouched) {
+                window.setTimeout(CheckTouch, 100); /* this checks the flag every 100 milliseconds*/
+            } else {
+                if (((document.documentElement.scrollTop || document.body.scrollTop) < fullscreenScrollAmount - 10) && ((document.documentElement.scrollTop || document.body.scrollTop) > 10)) {
+                    pageScroll();
+                }
+            }
+        }
+        CheckTouch(); 
+        if ((document.documentElement.scrollTop || document.body.scrollTop) > fullscreenScrollAmount-10) {
+            isModalFullscreen = true;
+        }
+        if ((document.documentElement.scrollTop || document.body.scrollTop) < 10) {
+            isModalFullscreen = false;
+        }
+        if ((document.documentElement.scrollTop || document.body.scrollTop) > fullscreenScrollAmount - 3) {
+            $(".EventPrevbackground").css("top", "-20px");
+            $(".ModalTopBG").css("border-radius", "0");
+        } else {
+            $(".EventPrevbackground").css("top", "0");
+            $(".ModalTopBG").css("border-radius", "25px 25px 0 0");
+        }
+    });
+    $(window).resize(function(){
+        HackyCSS();
+    });
+});
+function TouchEnd() {
+    isScreenTouched = false;
+}
+function TouchStart() {
+    isScreenTouched = true;
+}
+
+//HackyCSS
+function HackyCSS() {
+    fullscreenScrollAmount = $(".SvhFinder").height() * .90 - 233;
+    $(".Group-Container").css("width", "calc((100% - 20px) / (" + Math.round((window.innerWidth - 20)/113) + ".5))");
+    if (window.innerWidth < 257 || window.innerHeight < 600) {
+        $(".InnerBar").css("visibility", "hidden");
+        $(".OuterBar").css("visibility", "hidden");
+        $(".CurrentClassName").css("top", "176px");
+    } else {
+        $(".InnerBar").css("visibility", "visible");
+        $(".OuterBar").css("visibility", "visible");
+        $(".CurrentClassName").css("top", "256px");
+    }
+}
+
+//no zoom & scroll stuff:
+document.addEventListener('gesturestart', function (e) {
+    e.preventDefault();
+});
+</script>
+
+</body>
+</h
