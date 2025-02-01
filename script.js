@@ -58,6 +58,8 @@ async function fetchCaptions() {
             let captions = data.transcripts.map(t => `<p><strong>[${t.start.toFixed(2)}s]</strong> ${t.text}</p>`).join('');
             document.getElementById('captions').innerHTML = captions;
             document.getElementById('captions').style.display = 'block';
+            getIngredients(captions);
+            getInstructions(captions);
         } else {
             document.getElementById('captions').innerHTML = "Captions not available for this video or language.";
         }
@@ -67,6 +69,95 @@ async function fetchCaptions() {
     }
 }
 
-async function gptProcess() {
+async function getIngredients(captions) {
+    const responseDiv = document.getElementById('ingredients');
+    responseDiv.innerHTML = "Loading...";
 
+    const apiKey = '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'; // Replace this with your OpenAI API Key
+
+    try {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+                model: "gpt-4o",
+                messages: [
+                    { role: "system", content: 'You are an AI Assistant' },
+                    { role: "user", content: `Here is a transcript of a YouTube short recipe. Please generate an ingredient list based on the script. If the exact amount of ingredient is not provided, give an amount based on the context of the recipe. For example: "Fresh parsley, amount to taste - Crusty white bread, amount to fill a casserole dish - Chicken stock, enough to moisten the bread mixture"
+Only give me the list of ingredients without any introductory or concluding phrases. ${captions}` }
+                ]
+            })
+        });
+
+        const data = await response.json();
+        responseDiv.innerHTML = `<strong>Response:</strong> ${data.choices[0].message.content}`;
+    } catch (error) {
+        responseDiv.innerHTML = `<strong>Error:</strong> ${error.message}`;
+    }  
+}
+
+async function getInstructions(captions) {
+    const responseDiv = document.getElementById('instructions');
+    responseDiv.innerHTML = "Loading...";
+
+    const apiKey = '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'; // Replace this with your OpenAI API Key
+
+    try {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+                model: "gpt-4o",
+                messages: [
+                    { role: "system", content: 'You are an AI Assistant' },
+                    { role: "user", content: `Here is a transcript of a YouTube short recipe. Please generate a set of instructions for the recipe. From the transcript, determine where you think a recipe "step" would be It could include multiple ingredients or lines in the script. Then pair the step with the timestamp of where it begins in the video. There may be a introduction in the recipe that does isn't a step. If this is the case, at [0.00s] just give a title of the video. Here is an example:
+
+"[0.00s] The Best Thanksgiving Stuffing
+
+[8.64s] Heat a little bit of oil in a pan and add one pound of breakfast sausage.
+
+[10.98s] Once the sausage is browned, remove it from the pan.
+
+[13.92s] Melt one stick of butter in the same pan.
+
+[15.18s] Add one diced onion and three ribs of diced celery.
+
+[18.78s] Once the vegetables begin to sweat, add garlic, fresh rosemary, fresh thyme, and a little parsley.
+
+[23.10s] Once fragrant, return the cooked sausage to the pan.
+
+[26.40s] Turn off the heat and let the mixture cool for a few minutes.
+
+[29.22s] In a large bowl, add crusty white bread.
+
+[30.96s] Add the sausage and vegetable mixture, along with some chicken stock and poultry seasoning.
+
+[35.70s] Taste the mixture and adjust seasoning as needed before adding three eggs.
+
+[37.68s] Mix everything together well until the mixture is nice and wet.
+
+[40.50s] Transfer the stuffing mixture to a greased casserole dish.
+
+[42.54s] Bake in a 350°F oven for 45 minutes—covered for 20 minutes, then uncovered for the remaining time."
+
+Only give me the instructions without any introductory or concluding phrases. Here is the transcript: ${captions}` }
+                ]
+            })
+        });
+
+        const data = await response.json();
+        responseDiv.innerHTML = `<strong>Response:</strong> ${data.choices[0].message.content}`;
+    } catch (error) {
+        responseDiv.innerHTML = `<strong>Error:</strong> ${error.message}`;
+    }  
+}
+
+async function searchYouTube() {
+    
 }
