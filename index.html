@@ -3,13 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Video Grabber</title>
+    <title>YouTube Video Downloader</title>
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        input {
+            width: 300px;
+            padding: 10px;
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        video {
+            margin-top: 20px;
+            width: 80%;
+            max-width: 800px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Simple YouTube Video Grabber</h1>
-    <button id="fetchVideo">Fetch Video</button>
-    <div id="videoContainer"></div>
-
-    <script src="script.js"></script>
+    <h1>YouTube Video Downloader</h1>
+    <input type="text" id="videoId" placeholder="Enter YouTube Video ID">
+    <button onclick="fetchVideo()">Download</button>
+    
+    <h2 id="videoTitle"></h2>
+    <video id="videoPlayer" controls></video>
 </body>
 </html>
