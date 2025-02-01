@@ -55,7 +55,6 @@ async function fetchCaptions(videoId) {
         if (data.transcripts) {
             let captions = data.transcripts.map(t => `<p><strong>[${t.start.toFixed(2)}s]</strong> ${t.text}</p>`).join('');
             document.getElementById('captions').innerHTML = captions;
-            document.getElementById('captions').style.display = 'block';
             getIngredients(captions);
             getInstructions(captions);
         } else {
@@ -159,7 +158,7 @@ Only give me the instructions without any introductory or concluding phrases. He
 async function searchYouTube() {
     const API_KEY = 'AIzaSyDR3bNdgAgA71trSKB35CpVrgyWLi2HTlU';  // Replace with actual API key
     const query = document.getElementById('searchQuery').value;
-    const maxResults = 10;
+    const maxResults = 30;
 
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)} recipe&type=video&maxResults=${maxResults}&videoDuration=short&key=${API_KEY}`;
 
@@ -178,15 +177,17 @@ async function searchYouTube() {
         data.items.forEach(item => {
             const videoId = item.id.videoId;
             const title = item.snippet.title;
-            const thumbnail = item.snippet.thumbnails.medium.url;
+            const thumbnail = item.snippet.thumbnails.high.url;
 
             const videoElement = document.createElement('div');
             videoElement.classList.add('video');
             videoElement.innerHTML = `
-                <button onclick='loadVideo("${videoId}")'>
-                    <img src="${thumbnail}" alt="${title}">
-                </button>
-                <p>${title}</p>
+                <div class="thumbnail-container">
+                    <button class="thumbnail-button" onclick='loadVideo("${videoId}")'>
+                        <img class="thumbnail" src="${thumbnail}" alt="${title}">
+                    </button>
+                    <p class="video-title">${title}</p>
+                </div>  
             `;
             videoContainer.appendChild(videoElement);
         });
@@ -203,6 +204,7 @@ function handleEnter(event) {
 }
 
 function loadVideo(videoId){
+    document.getElementById("videoPlayerContainer").style.display = "flex";
     fetchVideo(videoId);
     fetchCaptions(videoId);
 }
