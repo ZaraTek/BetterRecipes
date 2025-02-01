@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI API Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .response {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Send OpenAI Request</h1>
+        <button onclick="generateResponse()">Generate Response</button>
+        <div class="response" id="response"></div>
+    </div>
+
+    <script>
+        var customIssue = "The New Bern BRT";
+        async function generateResponse() {
+            const responseDiv = document.getElementById('response');
+            responseDiv.innerHTML = "Loading...";
+
+            const apiKey = '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'; // Replace this with your OpenAI API Key
+
+            try {
+                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: "gpt-4o-mini",
+                        messages: [
+                            { role: "system", content: 'You are a helpful AI Assistant' },
+                            { role: "user", content: `Without any introductory or concluding phrases (or the dear [candidate name] and sincerely [your name]), generate only a paragraph similar to the following paragraphs on the specific issue of "${customIssue}": Dear [candidate_name],
+
+I am a citizen who will be voting in the upcoming election. I had a few questions about your stances and proposed policies on the following issues:
+
+1. Healthcare
+What policies do you have in mind to make healthcare accessible and affordable? What is your stance on Medicare and Medicaid? Do you have any proposals for funding mental health services?
+
+2. Education
+What are your plans for funding public schools and supporting teachers? Where do you stand on school choice and charter schools? Do you have any proposals to address the rising costs of higher education and student loan debt?
+
+3. Economy and Jobs
+What is your stance on minimum wage policies? Do you have plans to support job creation and local small businesses? How do you plan to protect workers' rights and improve labor conditions?
+
+4. Environment and Climate Change
+What initiatives do you support to promote sustainability and green energy? How would you address carbon emissions and pollution? What are your plans to conserve natural resources and protect public lands?
+
+5. Gun Control and Public Safety
+What are your views on gun permits and background check policies? How do you plan to address community safety, including police reform? What measures would you support to prevent crime and improve the justice system?
+
+6. Immigration
+What reforms do you support regarding immigration policies and border security? How would you assist immigrants within our community? What is your stance on issues affecting undocumented individuals and programs like DACA?
+
+7. Civil Rights and Social Justice
+What are your thoughts on protecting voting rights and ensuring election security? How would you work to advance LGBTQ+ rights and other protections? What is your approach to criminal justice reform and addressing racial equity?
+
+8. Reproductive Rights
+What is your position on access to abortion and other reproductive health services? How would you address policies regarding birth control and family planning? What steps would you take to improve maternal healthcare and promote healthcare equity?
+
+9. Housing and Homelessness
+What are your plans for making housing more affordable? How would you address homelessness in our community? Do you support rent control measures or enhanced tenant rights?
+
+10. Technology and Privacy
+What policies do you propose to protect data privacy and cybersecurity? How do you view the regulation of social media and major tech companies? What are your plans to improve internet access and digital infrastructure?
+
+11. Infrastructure
+How would you prioritize funding for roads, public transportation, and other infrastructure needs? What plans do you have for investing in water, sewer, and energy systems? How would you prepare for and respond to natural disasters?
+
+12. Foreign Policy and Defense
+What is your stance on international relations, including our nation’s alliances? What approach do you support regarding military spending and veterans' services? How would you address nuclear and cybersecurity threats?
+
+Sincerely,
+[your name]' ` }
+                        ]
+                    })
+                });
+
+                const data = await response.json();
+                responseDiv.innerHTML = `<strong>Response:</strong> ${data.choices[0].message.content}`;
+            } catch (error) {
+                responseDiv.innerHTML = `<strong>Error:</strong> ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
