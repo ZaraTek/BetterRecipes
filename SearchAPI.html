@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Search API Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        input {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .video {
+            margin: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>YouTube Search</h1>
+    <input type="text" id="searchQuery" placeholder="Search for videos..." />
+    <button onclick="searchYouTube()">Search</button>
+
+    <div class="video-container" id="videoResults"></div>
+
+    <script>
+        async function searchYouTube() {
+            const API_KEY = 'AIzaSyDR3bNdgAgA71trSKB35CpVrgyWLi2HTlU';  // Replace with your actual API key
+            const query = document.getElementById('searchQuery').value;
+            const maxResults = 10; // Number of videos to retrieve
+
+            // Adding videoDuration=short to limit results to videos under 4 minutes
+            const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&maxResults=${maxResults}&videoDuration=short&key=${API_KEY}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                // Check if there are results
+                if (!data.items) {
+                    alert("No results found.");
+                    return;
+                }
+
+                const videoContainer = document.getElementById('videoResults');
+                videoContainer.innerHTML = ''; // Clear previous results
+
+                data.items.forEach(item => {
+                    const videoId = item.id.videoId;
+                    const title = item.snippet.title;
+                    const thumbnail = item.snippet.thumbnails.medium.url;
+
+                    const videoElement = document.createElement('div');
+                    videoElement.classList.add('video');
+                    videoElement.innerHTML = `
+                        <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">
+                            <img src="${thumbnail}" alt="${title}">
+                        </a>
+                        <p>${title}</p>
+                    `;
+                    videoContainer.appendChild(videoElement);
+                });
+            } catch (error) {
+                console.error("Error fetching YouTube data:", error);
+                alert("Failed to fetch YouTube data. Please check your API key.");
+            }
+        }
+    </script>
+
+</body>
+</html>
