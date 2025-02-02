@@ -7,6 +7,8 @@ var typingIndexInst;
 var typingIndexIng;
 var isIngredientsDisplaying = false;
 var ingredientsGLOBAL = "";
+var container = document.getElementById("screen");
+var content = container.innerHTML;
 
 async function fetchVideo(videoId) {
     if (!videoId) {
@@ -360,3 +362,7 @@ function onResize() {
 }
 
 window.addEventListener("resize", onResize);
+
+function forward() {
+    
+}

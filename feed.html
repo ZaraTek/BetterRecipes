@@ -219,7 +219,7 @@
         }
 
         .video-player-view {
-            display: none;
+            display: flex;
             height: calc(100vh - 60px);
         }
 
@@ -523,27 +523,15 @@
 </head>
 
 <body>
-    <div class="screen">
+    <div class="screen" id="screen">
         <div class="header">
             <div class="title"><img height="40px" width="40px" src="chef-hat.svg">InstaChef</div>
             <div class="nav-row">
                 <button style="width: 50px" class="text-button">Feed</button>
-                <button style="width: 60px" class="text-button selected">Search</button>
-                <button style="width: 70px" class="text-button">Library</button>
+                <button style="width: 60px" class="text-button selected" onclick="location.reload();">Search</button>
             </div>
         </div>
         <div class="content">
-            <div class="search-view" id="searchView">
-                <div class="search-bar-container">
-                    <h1 style="line-height: 0;">Search For Recipes</h1>
-                    <div class="search-bar">
-                        <input class="search-input" type="text" id="searchQuery" placeholder="Search for videos..."
-                            onkeypress="handleEnter(event)" />
-                        <button class="search-button" onclick="searchYouTube()">Search</button>
-                    </div>
-                </div>
-                <div class="thumbnail-list" id="videoResults"></div>
-            </div>
             <div class="video-player-view" id="videoPlayerView">
                 <div class="video-player-container">
                     <div class="video-container">
