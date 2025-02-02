@@ -91,7 +91,7 @@ async function getIngredients(captions) {
     const responseDiv = document.getElementById('ingredients');
     responseDiv.innerHTML = "Loading...";
 
-    const apiKey = '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'; // Replace this with your OpenAI API Key
+    const apiKey = openaiAPIKey; // Replace this with your OpenAI API Key
 
     try {
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
