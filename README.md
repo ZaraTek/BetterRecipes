@@ -25,3 +25,10 @@ Throughout the development of this project, we became significantly more comfort
 
 ## What's next for InstaChef
 Right now our feed is sourced from local files in the repository, and therefore very limited. To improve our site, we could create an algorithm to retrieve videos similar to the algorithms of social media feeds. Eventually, we can form partnerships with cooking content creators, and have them upload their content directly to our site. This would allow us to move away from some of our APIs that the site is currently dependent on.
+
+## How to set up:
+You need API keys from the following APIs for the search feature:
+  Google Cloud Console (enable YouTube Data API)
+  Search API
+  OpenAI
+  ZylaLabs
