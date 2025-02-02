@@ -1,10 +1,25 @@
 
 
 // NEW SECTION
-
+ 
 var feedLength = 21;
 var activeIndex = Math.floor(Math.random() * feedLength);
 console.log(activeIndex);
+var activeIndexArray = [];
+var activeIndexArrayIndex = 0;
+
+function getRandomArray() {
+    let arr = Array.from({ length: 21 }, (_, i) => i); 
+    
+    for (let i = arr.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]]; 
+    }
+    
+    activeIndexArray = arr;
+}
+
+getRandomArray();
 
 function loadVideo() {
     const videoPlayer = document.getElementById("videoPlayer");
@@ -343,3 +358,13 @@ function toggleLoop() {
     currentStepIndex = loopingStepIndex;
 }
 
+function down() {
+    activeIndexArrayIndex++;
+    activeIndex = activeIndexArray[activeIndexArrayIndex];
+    loadVideo();
+}
+function up() {
+    activeIndexArrayIndex--;
+    activeIndex = activeIndexArray[activeIndexArrayIndex];
+    loadVideo();
+}
