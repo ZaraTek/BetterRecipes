@@ -270,7 +270,7 @@ progress.addEventListener("input", () => {
 // Mute/Unmute
 muteButton.addEventListener("click", () => {
     video.muted = !video.muted;
-    document.getElementById("volumeIcon").src = video.muted ? "mute_icon.svg" : "volume_icon.svg";
+    document.getElementById("volumeIcon").src = video.muted ? "svgs/mute_icon.svg" : "svgs/volume_icon.svg";
 });
 
 function updateProgress(rangeInput) {
@@ -338,7 +338,7 @@ function toggleIngredients() {
     const button = document.getElementById("ingredientsArrow");
     
     ingredients.style.display = isIngredientsDisplaying ? "block": "none";
-    button.src = isIngredientsDisplaying ? "flipped_dropdown_icon.svg": "dropdown_icon.svg";
+    button.src = isIngredientsDisplaying ? "svgs/flipped_dropdown_icon.svg": "svgs/dropdown_icon.svg";
 
     typeStepIng(ingredientsGLOBAL);
 
