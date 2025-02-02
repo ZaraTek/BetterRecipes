@@ -13,6 +13,11 @@ var isLoopingStep = false;
 var loopingStepIndex = 0;
 var currentDisplayedIndex;
 
+var googleAPIKey = "YOUR-API-KEY";
+var openaiAPIKey = "YOUR-API-KEY";
+var zylalabsAPIKey = "YOUR-API-KEY";
+var captionsAPIKey = "YOUR-API-KEY";
+
 async function fetchVideo(videoId) {
     if (!videoId) {
         alert("Please enter a YouTube video ID.");
@@ -20,7 +25,7 @@ async function fetchVideo(videoId) {
     }
 
     const apiUrl = `https://zylalabs.com/api/3219/youtube+mp4+video+downloader+api/6812/youtube+downloader?videoId=${videoId}`;
-    const apiKey = "Bearer 6573|nlzRB3czOZMD3kk8sg9nYOiDSmMjLdFDt2Om2yfZ"; // Replace with your actual API key
+    const apiKey = zylalabsAPIKey;
 
     try {
         const response = await fetch(apiUrl, {
@@ -57,7 +62,7 @@ async function fetchVideo(videoId) {
 
 async function fetchCaptions(videoId) {
     const lang = "en";
-    const apiKey = 'CHxXrLsu94et2roe9HRu3d3Q'; // Replace with actual API key
+    const apiKey = captionsAPIKey;
     const url = `https://www.searchapi.io/api/v1/search?api_key=${apiKey}&engine=youtube_transcripts&video_id=${videoId}&lang=${lang}`;
 
     // captions = "[0.02s] hey yo so the other day I made these[1.82s] Cheesesteak sliders it's never too late[3.62s] to make appetizers and these are the[5.12s] truthful let me show you how to get down[6.26s] so I got some ribeye steaks that I[8.06s] sliced down really thin until it looked[9.80s] like this and I got them into a hot[11.36s] skillet cooked them down until they were[13.10s] nice and brown then I hit them with some[14.42s] salt pepper and adobo and Worcestershire[16.34s] sauce I really hate trying to say that[17.90s] words you could see but I got some[19.22s] peppers and onions into that same[20.60s] Skillet cook those down then I added the[22.76s] steak back in after everything was well[24.38s] and mixed together I added some shredded[25.94s] pepper jack cheese to the mixture then I[27.92s] set it aside to cool while I was letting[30.08s] it cool I sliced up some Kings Hawaiian[31.94s] dinner rolls lined the bottom with some[34.04s] white American cheese put that steak[35.72s] mixture down and then I topped it with[37.22s] some more of that pepper jack and yeah[38.84s] it was just a tiny bit of cheddar in[40.34s] there too but I got these onto a sheet[42.62s] tray got the top on and hit it with some[44.42s] garlic butter into the oven until it[46.34s] rolls with golden brown the cheese was[48.02s] bubbly these cheesecake sliders were[49.94s] cheesy ooey gooey plenty of flavor try[52.40s] these things out next time you're having[53.78s] people over and you won't regret it and[55.82s] you already know it's a wrap let's go";
@@ -130,7 +135,7 @@ Only give me the list of ingredients without any introductory or concluding phra
 }
 
 async function getInstructions(captions) {
-    const apiKey = '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'; // Replace this with your OpenAI API Key
+    const apiKey = openaiAPIKey;
 
     try {
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -168,47 +173,47 @@ Only give me the instructions without any introductory or concluding phrases. He
 }
 
 async function searchYouTube() {
-    loadVideo(document.getElementById("searchQuery").value);
+    // loadVideo(document.getElementById("searchQuery").value);
 
-    // const API_KEY = 'AIzaSyA8Dkhh_pYICYQkI5Q18yaW23haJ9-kEZ4';  // Replace with actual API key
-    // const query = document.getElementById('searchQuery').value;
-    // const maxResults = 1;
+    const API_KEY = googleAPIKey;  // Replace with actual API key
+    const query = document.getElementById('searchQuery').value;
+    const maxResults = 25;
 
-    // const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)} recipe&type=video&maxResults=${maxResults}&videoDuration=short&key=${API_KEY}`;
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)} recipe&type=video&maxResults=${maxResults}&videoDuration=short&key=${API_KEY}`;
 
-    // try {
-    //     const response = await fetch(url);
-    //     const data = await response.json();
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
 
-    //     if (!data.items) {
-    //         alert("No results found.");
-    //         return;
-    //     }
+        if (!data.items) {
+            alert("No results found.");
+            return;
+        }
 
-    //     const videoContainer = document.getElementById('videoResults');
-    //     videoContainer.innerHTML = '';
+        const videoContainer = document.getElementById('videoResults');
+        videoContainer.innerHTML = '';
 
-    //     data.items.forEach(item => {
-    //         const videoId = item.id.videoId;
-    //         const title = item.snippet.title;
-    //         const thumbnail = item.snippet.thumbnails.high.url;
+        data.items.forEach(item => {
+            const videoId = item.id.videoId;
+            const title = item.snippet.title;
+            const thumbnail = item.snippet.thumbnails.high.url;
 
-    //         const videoElement = document.createElement('div');
-    //         videoElement.classList.add('video');
-    //         videoElement.innerHTML = `
-    //             <div class="thumbnail-container">
-    //                 <button class="thumbnail-button" onclick='loadVideo("${videoId}")'>
-    //                     <img class="thumbnail" src="${thumbnail}" alt="${title}">
-    //                 </button>
-    //                 <p class="video-title">${title}</p>
-    //             </div>  
-    //         `;
-    //         videoContainer.appendChild(videoElement);
-    //     });
-    // } catch (error) {
-    //     console.error("Error fetching YouTube data:", error);
-    //     alert("Failed to fetch YouTube data. Please check your API key.");
-    // }
+            const videoElement = document.createElement('div');
+            videoElement.classList.add('video');
+            videoElement.innerHTML = `
+                <div class="thumbnail-container">
+                    <button class="thumbnail-button" onclick='loadVideo("${videoId}")'>
+                        <img class="thumbnail" src="${thumbnail}" alt="${title}">
+                    </button>
+                    <p class="video-title">${title}</p>
+                </div>  
+            `;
+            videoContainer.appendChild(videoElement);
+        });
+    } catch (error) {
+        console.error("Error fetching YouTube data:", error);
+        alert("Failed to fetch YouTube data. Please check your API key.");
+    }
 }
 
 function handleEnter(event) {

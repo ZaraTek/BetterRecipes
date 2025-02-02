@@ -3,19 +3,21 @@
 // NEW SECTION
  
 var feedLength = 21;
-var activeIndex = Math.floor(Math.random() * feedLength);
+// var activeIndex = Math.floor(Math.random() * feedLength);
+var activeIndex = 16; // DELETE AFTER DEMO
 var activeIndexArray = [];
 var activeIndexArrayIndex = 0;
 
 function getRandomArray() {
-    let arr = Array.from({ length: 21 }, (_, i) => i); 
+    // let arr = Array.from({ length: 21 }, (_, i) => i); 
     
-    for (let i = arr.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]]; 
-    }
+    // for (let i = arr.length - 1; i > 0; i--) {
+    //     let j = Math.floor(Math.random() * (i + 1));
+    //     [arr[i], arr[j]] = [arr[j], arr[i]]; 
+    // }
     
-    activeIndexArray = arr;
+    // activeIndexArray = arr;
+    activeIndexArray = [16,8,15,0]; // DELETE AFTER DEMO
 }
 getRandomArray();
 console.log("HOWDY"+activeIndexArray);
