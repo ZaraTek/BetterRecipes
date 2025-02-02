@@ -9,6 +9,9 @@ var isIngredientsDisplaying = false;
 var ingredientsGLOBAL = "";
 var container = document.getElementById("screen");
 var content = container.innerHTML;
+var isLoopingStep = false;
+var loopingStepIndex = 0;
+var currentDisplayedIndex;
 
 async function fetchVideo(videoId) {
     if (!videoId) {
@@ -275,19 +278,30 @@ function updateProgress(rangeInput) {
         }
     } // at the end of this for loop, currentStepIndex is correct
 
-    if (currentStepIndex != oldStepIndex) {
-        
-        if (currentStepIndex == 0) {
-            document.getElementById("steps").innerHTML = `<strong>${timedSteps[currentStepIndex][1]}</strong>`;
+    if (isLoopingStep) {
+        if (currentStepIndex !== loopingStepIndex) {
+            videoPlayer.currentTime = timedSteps[loopingStepIndex][0];
+            currentStepIndex = loopingStepIndex;
+            if (currentStepIndex !== 0 && loopingStepIndex !== currentDisplayedIndex) {
+                typeStepInst(timedSteps[loopingStepIndex][1], loopingStepIndex);
+            }
         }
-        else {
-            typeStepInst(timedSteps[currentStepIndex][1], currentStepIndex);
+    } else {
+        if (currentStepIndex != oldStepIndex) {
+            if (currentStepIndex == 0) {
+                document.getElementById("steps").innerHTML = `<strong>${timedSteps[currentStepIndex][1]}</strong>`;
+            }
+            else {
+                typeStepInst(timedSteps[currentStepIndex][1], currentStepIndex);
+            }
         }
+        oldStepIndex = currentStepIndex;
     }
-    oldStepIndex = currentStepIndex;
+    
 }
 
 function typeStepInst(str, stepIndex) {
+    currentDisplayedIndex = stepIndex;
     typingStepsInst = [];
     for (i = 0; i < str.length; i++) {
         typingStepsInst.push(str.slice(0, i));
@@ -297,6 +311,7 @@ function typeStepInst(str, stepIndex) {
 }
 function typeCharInst() {
     const steps = document.getElementById("steps");
+    currentDisplayedIndex = currentStepIndex;
     if (currentStepIndex == 0) {
         document.getElementById("steps").innerHTML = `<strong>${timedSteps[currentStepIndex][1]}</strong>`;
     }
@@ -355,8 +370,18 @@ function onResize() {
     if (videoPlayer) {
         const rect = videoPlayer.getBoundingClientRect();
         const left = rect.left;
-        steps.style.left = `max(${left-400}px, 20px)`;
-        ingredients.style.left = `max(${left-400}px, 20px)`;
+        
+        if (left-400 < 20) {
+            ingredients.style.alignItems = "start";
+            steps.style.left = `${left+20}px`;
+            steps.style.bottom = `180px`;
+            ingredients.style.left = `${left+20}px`;
+        } else {
+            ingredients.style.alignItems = "end";
+            steps.style.left = `max(${left-400}px, 20px)`;
+            ingredients.style.left = `max(${left-400}px, 20px)`;
+            steps.style.bottom = `100px`;
+        }
     }
     
 }
@@ -364,5 +389,49 @@ function onResize() {
 window.addEventListener("resize", onResize);
 
 function forward() {
-    
+    if (!isLoopingStep) {
+        loopingStepIndex = currentStepIndex;
+    }
+    isLoopingStep = true;
+    document.getElementById("toggleLoop").innerHTML = "Looping Step";
+    document.getElementById("toggleLoop").classList.add("looping");
+    loopingStepIndex++;
+    currentStepIndex = loopingStepIndex;
+
+    if (currentStepIndex == 0) {
+        document.getElementById("steps").innerHTML = `<strong>${timedSteps[currentStepIndex][1]}</strong>`;
+    }
+    else {
+        typeStepInst(timedSteps[currentStepIndex][1], currentStepIndex);
+    }
+}
+function back() {
+    if (!isLoopingStep) {
+        loopingStepIndex = currentStepIndex;
+    }
+    isLoopingStep = true;
+    document.getElementById("toggleLoop").innerHTML = "Looping Step";
+    document.getElementById("toggleLoop").classList.add("looping");
+    loopingStepIndex--;
+    currentStepIndex = loopingStepIndex;
+
+    if (currentStepIndex == 0) {
+        document.getElementById("steps").innerHTML = `<strong>${timedSteps[currentStepIndex][1]}</strong>`;
+    }
+    else {
+        typeStepInst(timedSteps[currentStepIndex][1], currentStepIndex);
+    }
+}
+function toggleLoop() {
+    if (!isLoopingStep) {
+        loopingStepIndex = currentStepIndex;
+    }
+    isLoopingStep = !isLoopingStep;
+    document.getElementById("toggleLoop").innerHTML = isLoopingStep ? "Looping Step": "Loop Step";
+    if (isLoopingStep) {
+        document.getElementById("toggleLoop").classList.add("looping");
+    } else {
+        document.getElementById("toggleLoop").classList.remove("looping");
+    }
+    currentStepIndex = loopingStepIndex;
 }
