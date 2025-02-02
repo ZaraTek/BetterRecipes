@@ -596,6 +596,40 @@
         .looping:hover {
             background-color: #424d;
         }
+        .arrow-container {
+            position: fixed;
+            top: calc((100vh - 120px) / 2);
+            right: 25px;
+
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            height: 120px;
+            width: 60px;
+            
+        }
+        .up-button {
+            height: 60px;
+            width: 60px;
+            background:red;
+            border-radius: 30px 30px 5px 5px;
+
+            background-color: #4249;
+            box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25), inset 1px 1px 1px rgba(255, 255, 255, 0.10);
+            backdrop-filter: blur(50.5px);
+            -webkit-backdrop-filter: blur(50.5px);
+        }
+        .down-button {
+            height: 60px;
+            width: 60px;
+            background:red;
+            border-radius: 5px 5px 30px 30px;
+
+            background-color: #4249;
+            box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25), inset 1px 1px 1px rgba(255, 255, 255, 0.10);
+            backdrop-filter: blur(50.5px);
+            -webkit-backdrop-filter: blur(50.5px);
+        }
     </style>
 </head>
 
@@ -666,6 +700,10 @@
 
                 </div>
             </div>
+        </div>
+        <div class="arrow-container">
+            <button class="up-button row">^</button>
+            <button class="down-button row" onlcick="down()">v</button>
         </div>
     </div>
 
