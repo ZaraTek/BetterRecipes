@@ -4,7 +4,6 @@
  
 var feedLength = 21;
 var activeIndex = Math.floor(Math.random() * feedLength);
-console.log(activeIndex);
 var activeIndexArray = [];
 var activeIndexArrayIndex = 0;
 
@@ -18,10 +17,13 @@ function getRandomArray() {
     
     activeIndexArray = arr;
 }
-
 getRandomArray();
+console.log("HOWDY"+activeIndexArray);
+
+
 
 function loadVideo() {
+    console.log("loadvid");
     const videoPlayer = document.getElementById("videoPlayer");
     videoPlayer.src = `backend/my_videos/video${activeIndex}.mp4`;
     getIngredients(localIngredients);
@@ -110,7 +112,6 @@ function getIngredients(localIngredients) {
     for (i=0; i < dataList.length; i++) {
         ingredientsGLOBAL += "- " + dataList[i] + "<br>";
     }
-    console.log(ingredientsGLOBAL);
     if (isIngredientsDisplaying) {
         typeStepIng(ingredientsGLOBAL);
     }
@@ -140,7 +141,6 @@ function getInstructions(localInstructions) {
     }
 
     timedSteps = timedStepsGPT;
-    console.log(timedSteps);
 }
 
 const video = document.getElementById("videoPlayer");
@@ -191,7 +191,6 @@ function updateProgress(rangeInput) {
     // we don't know what this does or why its here const percent = ((rangeInput.value - rangeInput.min) / (rangeInput.max - rangeInput.min)) * 100 + "%";
 
     const currentTime = document.getElementById("videoPlayer").currentTime;
-    console.log(currentTime);
 
     for (let i = 0; i < timedSteps.length; i++) {
         if (timedSteps[i][0] <= currentTime) {
@@ -223,7 +222,7 @@ function updateProgress(rangeInput) {
 
 function typeStepInst(str, stepIndex) {
     currentDisplayedIndex = stepIndex;
-    typingStepsInst = [];
+    typingStepsInst = [];   
     for (i = 0; i < str.length; i++) {
         typingStepsInst.push(str.slice(0, i));
         typingIndexInst = 0;
@@ -260,7 +259,6 @@ function toggleIngredients() {
 }
 
 function typeStepIng(str) {
-    console.log("type steping");
     typingIngArray = [];
     for (i = 0; i < str.length; i++) {
         typingIngArray.push(str.slice(0, i));
@@ -360,11 +358,32 @@ function toggleLoop() {
 
 function down() {
     activeIndexArrayIndex++;
+    if (activeIndexArrayIndex >= activeIndexArray.length) activeIndexArrayIndex = 0;
+    
     activeIndex = activeIndexArray[activeIndexArrayIndex];
-    loadVideo();
+
+    // Ensure ingredients and instructions update
+    getIngredients(localIngredients);
+    getInstructions(localInstructions);
+
+    loadVideo(); // Load the video after updating variables
+
+    document.getElementById("steps").innerHTML = `<strong>${timedSteps[0][1]}</strong>`;
+    playIcon.style.display = "none";
 }
+
 function up() {
     activeIndexArrayIndex--;
+    if (activeIndexArrayIndex < 0) activeIndexArrayIndex = activeIndexArray.length - 1;
+
     activeIndex = activeIndexArray[activeIndexArrayIndex];
+
+    // Ensure ingredients and instructions update
+    getIngredients(localIngredients);
+    getInstructions(localInstructions);
+
     loadVideo();
+
+    document.getElementById("steps").innerHTML = `<strong>${timedSteps[0][1]}</strong>`;
+    playIcon.style.display = "none";
 }

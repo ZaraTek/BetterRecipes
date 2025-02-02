@@ -599,7 +599,7 @@
         .arrow-container {
             position: fixed;
             top: calc((100vh - 120px) / 2);
-            right: 25px;
+            right: 45px;
 
             display: flex;
             flex-direction: column;
@@ -646,7 +646,7 @@
             <div class="video-player-view" id="videoPlayerView">
                 <div class="video-player-container">
                     <div class="video-container">
-                        <video id="videoPlayer" class="video-player"></video>
+                        <video id="videoPlayer" class="video-player" autoplay></video>
                         <div class="play-icon-container">
                             <img class="play-button" id="playButton" src="play_button.svg">
                         </div>
@@ -702,8 +702,8 @@
             </div>
         </div>
         <div class="arrow-container">
-            <button class="up-button row">^</button>
-            <button class="down-button row" onlcick="down()">v</button>
+            <button class="up-button row" onclick="up()">^</button>
+            <button class="down-button row" onclick="down()">v</button>
         </div>
     </div>
 
